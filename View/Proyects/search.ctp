@@ -128,7 +128,7 @@ if (empty($predios)) {
                     <td><?php echo $ben['Proyect']['codigo'] ?></td> 
                     <td><?php echo $ben['Property']['nombre'] ?></td>
                     <td><?php echo  $ben['City']['name']." (". $ben['Departament']['name'].")" ?></td>
-                    <td><?php echo $ben['Property']['matricula'] ?></td>
+                    <td><?php echo $ben['Property']['oficina_matricula']."-".$ben['Property']['numero_matricula'] ?></td>
                     <td><?php echo $ben['Property']['cedula_catastral'] ?></td>
 
                 </tr>
