@@ -472,74 +472,51 @@ Class ProyectsController extends AppController {
     }
 
     public function search() {
+        $parameter = $this->data['Proyect']['parametro'];
+
         if (!empty($this->data)) {
             App::Import('model', 'Beneficiary');
-            $Beneficiary = new Beneficiary();
-            $Beneficiary->recursive = -1;
-            $ide = $this->data['Proyect']['busqueda'];
-            if ($ide != "") {
+            App::Import('model', 'Property');
+            $Beneficiary = new Beneficiary;
+            $Property = new Property();
+            // $Beneficiary->recursive = -1;
+            //$ide = $this->data['Proyect']['busqueda'];
+            if (!empty($parameter)) {
 
-                $resultados = $Beneficiary->find('all', array('conditions' => array(
+                $resultados = $Beneficiary->find('all', array(
+                    'conditions' => array(
                         "or" => array(
-                            "Beneficiary.numero_identificacion LIKE" => "%$ide%",
-                            "Beneficiary.nombres LIKE" => "%$ide%",
-                            " (Beneficiary.nombres+' '+Beneficiary.primer_apellido) LIKE" => "%$ide%",
-                            " (Beneficiary.nombres+' '+Beneficiary.primer_apellido+' '+Beneficiary.segundo_apellido) LIKE" => "%$ide%",
-                            "(Beneficiary.nombres+' '+Beneficiary.primer_apellido) LIKE" => "%$ide%",
-                            "Beneficiary.primer_apellido LIKE" => "%$ide%",
-                            "Beneficiary.segundo_apellido LIKE" => "%$ide%",
-                            "Beneficiary.nombres LIKE" => "%$ide%",
+                            "Beneficiary.numero_identificacion LIKE" => "%$parameter%",
+                            "Beneficiary.nombres LIKE" => "%$parameter%",
+                            "CONCAT(Beneficiary.nombres,' ',Beneficiary.primer_apellido) LIKE" => "%$parameter%",
+                            "CONCAT(Beneficiary.nombres,' ',Beneficiary.primer_apellido,' ',Beneficiary.segundo_apellido) LIKE" => "%$parameter%",
+                            "CONCAT(Beneficiary.nombres,' ',Beneficiary.primer_apellido) LIKE" => "%$parameter%",
+                            "Beneficiary.primer_apellido LIKE" => "%$parameter%",
+                            "Beneficiary.segundo_apellido LIKE" => "%$parameter%",
+                            "Beneficiary.nombres LIKE" => "%$parameter%",
                         )
                     ),
-                    'fields' => array('Proyect.codigo', 'Property.nombre', 'Beneficiary.tipo_identificacion', 'Beneficiary.numero_identificacion', 'Beneficiary.nombres', 'Beneficiary.primer_apellido', 'Beneficiary.segundo_apellido'),
-                    'joins' => array(
-                        array('table' => 'properties', 'alias' => 'Property', 'type' => 'left', 'conditions' => 'Property.id=Beneficiary.property_id'),
-                        array('table' => 'proyects', 'alias' => 'Proyect', 'type' => 'left', 'conditions' => 'Proyect.id=Property.proyect_id')
-                    ),
-                        )
-                );
-
-                $predios = $this->Proyect->Property->find('all', array('conditions' => array(
+                    'fields' => array(
+                        'Proyect.codigo', 'Property.nombre', 'Beneficiary.tipo_identificacion', 'Beneficiary.numero_identificacion', 'Beneficiary.nombres', 'Beneficiary.primer_apellido', 'Beneficiary.segundo_apellido'
+                    )
+                ));
+                
+                $predios = $Property->find('all', array(
+                    'conditions' => array(
                         "or" => array(
-                            "Property.nombre LIKE" => "%$ide%",
-                            "Property.matricula LIKE" => "%$ide%",
-                            "Property.cedula_catastral LIKE" => "%$ide%",
+                            "Property.nombre LIKE" => "%$parameter%",
+                            "Property.numero_matricula LIKE" => "%$parameter%",
+                            "CONCAT(Property.oficina_matricula,'-',Property.numero_matricula) LIKE" => "%$parameter%"
                         )
                     ),
-                    'recursive' => -1,
-                    'fields' => array('Proyect.codigo', 'Property.nombre', 'Property.matricula', 'Property.cedula_catastral', 'Property.vereda', 'City.name', 'Departament.name'),
-                    'joins' => array(
-                        array('table' => 'proyects', 'alias' => 'Proyect', 'type' => 'left', 'conditions' => 'Proyect.id=Property.proyect_id'),
-                        array('table' => 'cities', 'alias' => 'City', 'type' => 'left', 'conditions' => 'Property.city_id=City.id'),
-                        array('table' => 'departaments', 'alias' => 'Departament', 'type' => 'left', 'conditions' => 'City.departament_id=Departament.id'),
-                    ),
+                    'fields' => array(
+                        'Proyect.codigo', 'Property.nombre', 'City.name', 'Departament.name', 'Property.numero_matricula', 'Property.cedula_catastral', 'Property.oficina_matricula'
+                    )
                 ));
 
-                //Busqueda de familiares
-
-                $familiares = $Beneficiary->Family->find('all', array('conditions' => array(
-                        "or" => array(
-                            "Family.numero_identificacion LIKE" => "%$ide%",
-                            "Family.nombres LIKE" => "%$ide%",
-                            "(Family.nombres+' '+Family.primer_apellido) LIKE" => "%$ide%",
-                            "(Family.nombres+' '+Family.primer_apellido+' '+Family.segundo_apellido) LIKE" => "%$ide%",
-                            "(Family.nombres+' '+Family.segundo_apellido) LIKE" => "%$ide%",
-                        )
-                    ),
-                    'recursive' => -1,
-                    'fields' => array('Beneficiary.numero_identificacion', 'Proyect.codigo', 'Property.nombre', 'Family.tipo_identificacion', 'Family.numero_identificacion', 'Family.nombres', 'Family.primer_apellido', 'Family.segundo_apellido'),
-                    'joins' => array(
-                        array('table' => 'beneficiaries', 'alias' => 'Beneficiary', 'type' => 'left', 'conditions' => 'Beneficiary.id=Family.beneficiary_id'),
-                        array('table' => 'properties', 'alias' => 'Property', 'type' => 'left', 'conditions' => 'Property.id=Beneficiary.property_id'),
-                        array('table' => 'proyects', 'alias' => 'Proyect', 'type' => 'left', 'conditions' => 'Proyect.id=Property.proyect_id')
-                    ),
-                ));
-
-
-                $this->set('resultados', $resultados);
+                
                 $this->set('predios', $predios);
-                $this->set('familiares', $familiares);
-                //$this->set('propietarios', $propietarios);
+                $this->set('resultados', $resultados);
             }
         }
     }
