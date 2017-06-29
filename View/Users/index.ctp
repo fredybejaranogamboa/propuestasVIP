@@ -2,7 +2,7 @@
     'Registrar',
     array( 'controller' => "Users", "action" => "add", 1 ),
     array(  
-        'update' => 'fff',
+        'update' => 'load',
         'complete' => '$("#add1").modal("show")',
         'class' => 'btn btn-success fa fa-plus-square-o',
         'type' => 'synchronous'
@@ -67,13 +67,33 @@
                 </table>
             </td>
             <td><?php
-                echo $this->Ajax->link("", array('controller' => "Users", "action" => "edit", $usuario['User']['id']), array('update' => 'content', 'class' => 'btn btn-success fa fa-pencil'));
+                echo $this->Ajax->link("", array('controller' => "Users", "action" => "edit", $usuario['User']['id']), 
+                                            array(  
+                                            'update' => 'loadedit',
+                                            'complete' => '$("#edit1").modal("show")',
+                                            'class' => 'btn btn-success fa fa-pencil',
+                                            'type' => 'synchronous'
+                                            )
+                                        );
                 if (AuthComponent::User('group_id') == 1) {
                 echo $this->Ajax->link('', array('controller' => 'Users', 'action' => 'delete', $usuario['User']['id']), array('update' => 'content', 'indicator' => 'loading', 'class' => 'btn btn-danger fa fa-trash'), '¿Desea eliminar el usuario?');
                 }
                 ?>
             </td>
-            <td><?php echo $this->Ajax->link(" Asignados", array('controller' => "UserProyects", "action" => "index", $usuario['User']['id']), array('update' => 'content', 'class' => 'btn btn-success fa fa-desktop')) ?></td>
+            <td><?php echo $this->Ajax->link(" Asignados", 
+                                            array('controller' => "UserProyects", "action" => "index", $usuario['User']['id']), 
+                                            array(  
+                                            'update' => 'assing',
+                                            'complete' => '$("#assigned").modal("show")',
+                                            'class' => 'btn btn-success fa fa-desktop',
+                                            'type' => 'synchronous'
+                                            )    
+                    
+                                             ); 
+                    ?>
+            
+            
+            </td>
         </tr>
         <?php endforeach; ?>
     </tbody>
@@ -82,14 +102,14 @@
 
 
 <?php echo $this->Ajax->link(
-'Registrar',
-array( 'controller' => "Users", "action" => "add", 1 ),
-array(  
-'update' => 'fff',
-'complete' => '$("#add1").modal("show")',
-'class' => 'btn btn-success fa fa-plus-square-o',
-'type' => 'synchronous'
-)
+    'Registrar',
+    array( 'controller' => "Users", "action" => "add", 1 ),
+    array(  
+        'update' => 'load',
+        'complete' => '$("#add1").modal("show")',
+        'class' => 'btn btn-success fa fa-plus-square-o',
+        'type' => 'synchronous'
+    )
 );
 ?>
 
@@ -106,7 +126,53 @@ array(
 
                 <!-- -->
 
-                    <div class="modal-body" id="fff">
+                    <div class="modal-body" id="load">
+
+                    </div>
+
+                <!-- -->
+
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="edit1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog" style="width: 60%">
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <div id="banner" align="center"><?php echo $this->Html->image('actualusu.png', array('width'=>'400','height'=>'auto')) ?> </div>
+            </div>
+
+
+                <!-- -->
+
+                    <div class="modal-body" id="loadedit">
+
+                    </div>
+
+                <!-- -->
+
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="assigned" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 60%">
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <div id="banner" align="center"><?php echo $this->Html->image('asignados.png', array('width'=>'400','height'=>'auto')) ?> </div>
+            </div>
+
+
+                <!-- -->
+
+                    <div class="modal-body" id="assing">
 
                     </div>
 
