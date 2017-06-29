@@ -7,7 +7,8 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>PDRET - Proyecto de desarrollo rural con enfoque territorial - INCODER</title>
+
+        <title>PDRET - Proyecto de desarrollo rural con enfoque territorial - ADR</title>
         <?php echo $this->Html->css('/bower_components/bootstrap/dist/css/bootstrap.css'); ?>
         <?php echo $this->Html->css('/bower_components/metisMenu/dist/metisMenu.min.css'); ?>
         <?php echo $this->Html->css('/dist/css/sb-admin-2.css'); ?>
@@ -133,9 +134,21 @@
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li>
-                                <?php
-                                echo $this->Ajax->link("  Mis datos", array('controller' => 'users', 'action' => 'edit_user'), array('escape' => FALSE, 'update' => 'content', 'indicator' => 'loading', 'class' => 'fa fa-user fa-fw'));
+
+
+                                <?php echo $this->Ajax->link(
+                                'Mis datos',
+                                array( 'controller' => "Users", "action" => "edit_user", 1 ),
+                                array(  
+                                'update' => 'cont',
+                                'complete' => '$("#edit").modal("show")',
+                                'class' => 'fa fa-user fa-fw',
+                                'type' => 'synchronous'
+                                )
+                                );
                                 ?>
+
+
                             </li>
                             <li class="divider"></li>
                             <li>
@@ -155,14 +168,25 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li class="sidebar-search">
+                       <?php     
+                       echo $this->Form->create("Proyects", array('novalidate' => '', 'id' => 'formulario', 'role' => "form", 'enctype' => 'multipart/form-data', 'type' => 'file', 'url' => array("action" => "search")));
+                        ?>
                                 <div class="input-group custom-search-form">
-                                    <input type="text" class="form-control" placeholder="Buscar...">
+                                    <?php 
+                                    echo $this->Form->input("Proyect.parametro", array('label' => '', 'class' => 'form-control', 'required' => '', 'placeholder' => 'Buscar'));
+                                    ?>
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">
-                                            <i class="fa fa-search"></i>
-                                        </button>
+                                    <?php
+                                    echo $this->Form->end(array('label'=>'Enviar', 'class' => 'btn btn-default'));
+                                    ?>
                                     </span>
+
                                 </div>
+
+                                <div>
+
+                                </div>   
+
                                 <!-- /input-group -->
                             </li>
 
@@ -180,52 +204,52 @@
                             $m->recursive = -1;
 
                             $items_id = $gi->find('all', array(
-                                'fields' => 'DISTINCT GroupsItem.item_id',
-                                'order' => 'GroupsItem.item_id ASC',
-                                'conditions' => array('GroupsItem.group_id' => AuthComponent::User('group_id'))
+                            'fields' => 'DISTINCT GroupsItem.item_id',
+                            'order' => 'GroupsItem.item_id ASC',
+                            'conditions' => array('GroupsItem.group_id' => AuthComponent::User('group_id'))
                             ));
 
                             $items = array();
                             foreach ($items_id as $item_id) {
-                                $items[] = $item_id["GroupsItem"]["item_id"];
+                            $items[] = $item_id["GroupsItem"]["item_id"];
                             }
 
                             $menus_id = $i->find('all', array(
-                                'fields' => 'DISTINCT Item.menu_id',
-                                'order' => 'Item.menu_id ASC',
-                                'conditions' => array('Item.id' => $items)
+                            'fields' => 'DISTINCT Item.menu_id',
+                            'order' => 'Item.menu_id ASC',
+                            'conditions' => array('Item.id' => $items)
                             ));
 
                             $menus = array();
                             foreach ($menus_id as $menu_id) {
-                                $menus[] = $menu_id["Item"]["menu_id"];
+                            $menus[] = $menu_id["Item"]["menu_id"];
                             }
 
                             $menus2 = $m->find('all', array(
-                                'order' => 'orden ASC',
-                                'conditions' => array('Menu.id' => $menus)
+                            'order' => 'orden ASC',
+                            'conditions' => array('Menu.id' => $menus)
                             ));
                             ?>
                             <?php foreach ($menus2 as $menu2): ?>
-                                <?php
-                                $items2 = $i->find('all', array(
-                                    'order' => 'orden ASC',
-                                    'conditions' => array('Item.menu_id' => $menu2['Menu']['id'], 'Item.id' => $items)
-                                ));
-                                ?>
-                                <li>
-                                    <a href="#"><i class="fa fa-<?php echo $menu2['Menu']['icono'] ?> fa-fw"></i> <?php echo $menu2['Menu']['nombre'] ?><span class="fa arrow"></span></a>
-                                    <ul class="nav nav-second-level">
-                                        <?php foreach ($items2 as $item2): ?>
-                                            <li>
-                                                <?php
-                                                echo $this->Html->link($item2['Item']['nombre'], array('controller' => $item2['Item']['controlador'], 'action' => $item2['Item']['accion']), array('escape' => FALSE, 'update' => 'content'));
-                                                ?>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                    <!-- /.nav-second-level -->
-                                </li>
+                            <?php
+                            $items2 = $i->find('all', array(
+                            'order' => 'orden ASC',
+                            'conditions' => array('Item.menu_id' => $menu2['Menu']['id'], 'Item.id' => $items)
+                            ));
+                            ?>
+                            <li>
+                                <a href="#"><i class="fa fa-<?php echo $menu2['Menu']['icono'] ?> fa-fw"></i> <?php echo $menu2['Menu']['nombre'] ?><span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <?php foreach ($items2 as $item2): ?>
+                                    <li>
+                                        <?php
+                                        echo $this->Html->link($item2['Item']['nombre'], array('controller' => $item2['Item']['controlador'], 'action' => $item2['Item']['accion']), array('escape' => FALSE, 'update' => 'content'));
+                                        ?>
+                                    </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
                             <?php endforeach; ?>
 
                         </ul>
@@ -259,7 +283,7 @@
                                 <select name="data[Proyect][call_id]" class="form-control">
                                     <?php
                                     foreach ($calls as $key => $value) {
-                                        echo "<option value='$key'>" . $value . "</option>";
+                                    echo "<option value='$key'>" . $value . "</option>";
                                     }
                                     ?>
                                 </select>
@@ -275,9 +299,9 @@
                 <div id="current"  >
                     <?php
                     if ($this->Session->read('codigo') == "") {
-                        echo"<h3>  NO HA SELECCIONADO PROYECTO </h3>";
+                    echo"<h3>  NO HA SELECCIONADO PROYECTO </h3>";
                     } else {
-                        echo"<h3>  PROYECTO ACTIVO: " . $this->Session->read('call_nombre') . " " . strtoupper($this->Session->read('codigo')) . "</h3>";
+                    echo"<h3>  PROYECTO ACTIVO: " . $this->Session->read('call_nombre') . " " . strtoupper($this->Session->read('codigo')) . "</h3>";
                     }
                     ?> 
                 </div>
@@ -302,6 +326,33 @@
                 </div>
             </div>
             <!-- /#page-wrapper -->
+        </div>
+        <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog" style="width: 60%">
+                <div class="modal-content" >
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <div id="banner" align="center">
+                            <?php 
+                            echo $this->Html->image('actualusu.png', array('width'=>'600','height'=>'auto')); 
+                            ?> 
+
+                        </div>
+                    </div>
+
+
+                    <!-- -->
+
+                    <div class="modal-body" id="cont">
+
+                    </div>
+
+                    <!-- -->
+
+
+                </div>
+            </div>
         </div>
     </body>
 </html>
