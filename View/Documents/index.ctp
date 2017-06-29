@@ -9,9 +9,6 @@
     </thead>
     <tbody>
         <?php foreach ($Documents as $Document): ?>
-            <?php
-            $rutaDocumento = APP . "webroot" . "/" . "files/resoluciones/" . "pdf";
-            ?>
             <tr>
                 <td><?php echo $Document['Document']['id']; ?></td>
                 <td><?php echo $Document['DocumentType']['nombre']; ?></td>
@@ -22,12 +19,12 @@
                     ?>
                 </td>
                 <td>
-                    <?php echo $this->Ajax->link(' Eliminar', array('controller' => 'Documents', 'action' => 'delete', $Document['Document']['id'], $Document['Document']['property_id']), array('update' => 'content', 'indicator' => 'loading', 'class' => 'btn btn-danger fa fa-trash'), '¿Realmente desea borrar el documento?'); ?>
+                    <?php echo $this->Ajax->link(' Eliminar', array('controller' => 'Documents', 'action' => 'delete', $Document['Document']['id'], $Document['Document']['entity_id'], $Document['Document']['foreign_id'], $Document['Document']['document_type_id']), array('update' => 'content', 'indicator' => 'loading', 'class' => 'btn btn-danger fa fa-trash'), '¿Realmente desea borrar el documento?'); ?>
                 </td>
                 <td>
                     <?php
-                    if (file_exists("../webroot/files/DocumentosPredios/otroDocumento-" . $Document['Document']['id'] . ".pdf"))
-                        echo $this->Html->link('  Adjunto', "../files/DocumentosPredios/otroDocumento-" . $Document['Document']['id'] . ".pdf", array('target' => 'blank', 'indicator' => 'loading', 'class' => 'btn btn-info fa fa-file-pdf-o', 'download' => "Documento-" . $aleatorio . ".pdf"));
+                    if (file_exists("../webroot/files/".$nombre_entidad."/".$Document['Document']['document_type_id']. "_" . $foreign_id . "_" . $Document['Document']['id'] . ".".$Document['DocumentType']['extension']))
+                        echo $this->Html->link('  Adjunto', "../webroot/files/".$nombre_entidad."/".$Document['Document']['document_type_id']. "_" . $foreign_id . "_" . $Document['Document']['id'] . ".".$Document['DocumentType']['extension'], array('target' => 'blank', 'indicator' => 'loading', 'class' => 'btn btn-info fa fa-file-pdf-o', 'download' => "Documento-" . $aleatorio . ".".$Document['DocumentType']['extension']));
                     ?>
                 </td>
             </tr>
@@ -36,5 +33,5 @@
 </table>
 <br><br><br>
 <?php
-echo $this->Ajax->link(' Adicionar', array('controller' => 'Documents', 'action' => 'add', $property_id), array('update' => 'content', 'indicator' => 'loading', 'class' => 'btn btn-success fa fa-plus-square-o'));
+echo $this->Ajax->link(' Adicionar', array('controller' => 'Documents', 'action' => 'add', $foreign_id, $entity_id), array('update' => 'content', 'indicator' => 'loading', 'class' => 'btn btn-success fa fa-plus-square-o'));
 ?>

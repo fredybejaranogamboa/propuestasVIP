@@ -154,7 +154,7 @@ echo $this->Form->hidden('Property.proyect_id');
     </tbody>
 </table>
 
-<?php echo $this->Ajax->link('  Otros documentos', array('controller' => 'Documents', 'action' => 'index', $this->data['Property']['id']), array('update' => 'content', 'indicator' => 'loading', 'class' => 'btn btn-success fa fa-plus-square-o')); ?>
+<?php echo $this->Ajax->link('  Otros documentos', array('controller' => 'Documents', 'action' => 'index', $this->data['Property']['id'], 34), array('update' => 'content', 'indicator' => 'loading', 'class' => 'btn btn-success fa fa-plus-square-o')); ?>
 <br><br>
 <?php echo $this->Form->end(array('label' => 'Guardar', 'class' => 'btn btn-default')) ?>
 <br>

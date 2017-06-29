@@ -8,7 +8,7 @@
 class Entity extends AppModel {
 
     public $name = "Entity";
-    public $hasMany = array('Action');
+    public $hasMany = array('Action', 'Document');
     public $actsAs = array('Logable' => array(
             'userModel' => 'User',
             'userKey' => 'user_id',

@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Listado Evaluaciones
+                Listado estructuraciones del proyecto
             </div>
             <div class="dataTable_wrapper">
                 <table class="table table-striped table-bordered table-hover">
@@ -24,6 +24,7 @@
                                 <td><?php echo $Evaluation['Evaluation']['calificacion_concepto_final'] ?></td>
                                 <td><?php echo $this->Ajax->link(' Editar', array('controller' => 'Evaluations', 'action' => 'edit', $Evaluation["Evaluation"]["id"]), array('update' => 'content', 'indicator' => 'loading', 'class' => 'btn btn-success fa fa-pencil')); ?><br><br>
                                     <?php echo $this->Ajax->link(' Verificación', array('controller' => 'Revisions', 'action' => 'index', $Evaluation["Evaluation"]["id"]), array('update' => 'content', 'indicator' => 'loading', 'class' => 'btn btn-success')); ?><br><br>
+                                    <?php echo $this->Ajax->link('  Otros documentos', array('controller' => 'Documents', 'action' => 'index', $Evaluation["Evaluation"]["id"], 23), array('update' => 'content', 'indicator' => 'loading', 'class' => 'btn btn-success fa fa-plus-square-o')); ?><br><br>
                                     <?php echo $this->Ajax->link(' Observaciones', array('controller' => 'Observations', 'action' => 'index', $Evaluation["Evaluation"]["id"]), array('update' => 'content', 'indicator' => 'loading', 'class' => 'btn btn-success')); ?><br><br>
                                     <?php echo $this->Ajax->link(' Concepto final', array('controller' => 'Evaluations', 'action' => 'concepto_final', $Evaluation["Evaluation"]["id"]), array('update' => 'content', 'indicator' => 'loading', 'class' => 'btn btn-success')); ?><br><br>
                                 </td>

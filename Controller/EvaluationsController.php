@@ -19,85 +19,10 @@ Class EvaluationsController extends AppController {
 
             if ($this->Evaluation->saveAll($this->data)) {
 
-                $last_id = $this->Evaluation->getLastInsertId();
-                $rutaArchivo = APP . "webroot" . DS . "files" . DS . "Evaluaciones";
-                if (!is_dir($rutaArchivo)) {
-                    if (!mkdir($rutaArchivo)) {
-                        echo "error creando archivo";
-                        //redirect
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['f10']['tmp_name'])) {
-                    $ext = explode(".", $this->data['Evaluation']['f10']['name']);
-                    $conteo = count($ext);
-                    $nombrearchivo = "f10-" . $last_id . "." . $ext[$conteo - 1];
-                    if (in_array($ext[$conteo - 1], array('docx', 'pdf'))) {
-                        if (!move_uploaded_file($this->data['Evaluation']['f10']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                            $this->Session->setFlash('Error adjuntando f10', 'flash_error');
-                        }
-                    } else {
-                        $this->Session->setFlash('El archivo del plan de negocio no se encuentra en un formato válido. Debe ser docx o pdf.', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['f11']['tmp_name'])) {
-                    $nombrearchivo = "f11-" . $last_id . ".xlsx";
-                    if (!move_uploaded_file($this->data['Evaluation']['f11']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando estudios', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['estudios']['tmp_name'])) {
-                    $nombrearchivo = "estudios-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Evaluation']['estudios']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando estudios', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['disenos']['tmp_name'])) {
-                    $nombrearchivo = "disenos-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Evaluation']['disenos']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando diseños', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['licencias']['tmp_name'])) {
-                    $nombrearchivo = "licencias-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Evaluation']['licencias']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando licencias', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['permisos_ambientales']['tmp_name'])) {
-                    $nombrearchivo = "permisos_ambientales-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Evaluation']['permisos_ambientales']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando permisos ambientales', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['f30']['tmp_name'])) {
-                    $nombrearchivo = "f30-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Evaluation']['f30']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando f30', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['f27']['tmp_name'])) {
-                    $nombrearchivo = "f27-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Evaluation']['f27']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando f27', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['f22']['tmp_name'])) {
-                    $nombrearchivo = "f22-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Evaluation']['f22']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando f22', 'flash_error');
-                    }
-                }
-
-                $this->send($this->data['Evaluation']['proyect_id'], 'add', $last_id, "");
+                //$last_id = $this->Evaluation->getLastInsertId();
+                
+                //para envio de correo
+                //$this->send($this->data['Evaluation']['proyect_id'], 'add', $last_id, "");
 
                 $this->Session->setFlash('Evaluación guardada correctamente', 'flash');
                 $this->redirect(array('controller' => 'Evaluations', 'action' => 'index'));
@@ -136,93 +61,8 @@ Class EvaluationsController extends AppController {
             $this->data = $this->Evaluation->find('first', array('conditions' => array('Evaluation.id' => $id), 'fields' => array('Evaluation.*')));
         } else {
             if ($this->Evaluation->save($this->data)) {
-
-                $last_id = $this->data['Evaluation']['id'];
-                $rutaArchivo = APP . "webroot" . DS . "files" . DS . "Evaluaciones";
-                if (!is_dir($rutaArchivo)) {
-                    if (!mkdir($rutaArchivo)) {
-                        echo "error creando archivo";
-                        //redirect
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['f10']['tmp_name'])) {
-                    $ext = explode(".", $this->data['Evaluation']['f10']['name']);
-                    $conteo = count($ext);
-                    $nombrearchivo = "f10-" . $last_id . "." . $ext[$conteo - 1];
-                    if (in_array($ext[$conteo - 1], array('docx', 'pdf'))) {
-                        if (!move_uploaded_file($this->data['Evaluation']['f10']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                            $this->Session->setFlash('Error adjuntando f10', 'flash_error');
-                        }
-                    } else {
-                        $this->Session->setFlash('El archivo del plan de negocio no se encuentra en un formato válido. Debes er docx o pdf.', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['f11']['tmp_name'])) {
-                    $nombrearchivo = "f11-" . $last_id . ".xlsx";
-                    if (!move_uploaded_file($this->data['Evaluation']['f11']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando estudios', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['estudios']['tmp_name'])) {
-                    $nombrearchivo = "estudios-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Evaluation']['estudios']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando estudios', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['disenos']['tmp_name'])) {
-                    $nombrearchivo = "disenos-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Evaluation']['disenos']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando diseños', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['licencias']['tmp_name'])) {
-                    $nombrearchivo = "licencias-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Evaluation']['licencias']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando licencias', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['permisos_ambientales']['tmp_name'])) {
-                    $nombrearchivo = "permisos_ambientales-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Evaluation']['permisos_ambientales']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando permisos ambientales', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['d7']['tmp_name'])) {
-                    $nombrearchivo = "d7-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Evaluation']['d7']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando d7', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['f30']['tmp_name'])) {
-                    $nombrearchivo = "f30-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Evaluation']['f30']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando f30', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['f27']['tmp_name'])) {
-                    $nombrearchivo = "f27-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Evaluation']['f27']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando f27', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Evaluation']['f22']['tmp_name'])) {
-                    $nombrearchivo = "f22-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Evaluation']['f22']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando f22', 'flash_error');
-                    }
-                }
-
-                $this->send($this->data['Evaluation']['proyect_id'], 'edit', $last_id, "");
+                //para envio de correo
+                //$this->send($this->data['Evaluation']['proyect_id'], 'edit', $last_id, "");
 
                 $this->Session->setFlash('Registro editado correctamente', 'flash');
                 $this->redirect(array('controller' => 'Evaluations', 'action' => 'index'));

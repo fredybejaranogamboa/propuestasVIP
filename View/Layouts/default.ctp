@@ -30,7 +30,6 @@
         <?php echo $this->Javascript->link('jquery.tablesorter'); ?>
         <?php echo $this->Javascript->link('jquery.tablesorter.widgets'); ?>
         <?php echo $this->Javascript->link('jquery.tablesorter.pager'); ?>
-        <?php echo $this->Javascript->link('jquery.validate'); ?>
         <?php echo $this->Javascript->link('bootstrap-select'); ?>
     </head>
     <body>

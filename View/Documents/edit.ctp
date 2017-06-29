@@ -1,8 +1,11 @@
 <script>
     $(document).ready(function () {
-        $("#form").validate({
+        $(".form").validate({
             rules: {
                 'data[Document][comentario]': {
+                    required: true
+                },
+                'data[Document][document_type_id]': {
                     required: true
                 }
             }
