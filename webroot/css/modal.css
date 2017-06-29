@@ -7,14 +7,23 @@ and open the template in the editor.
     Created on : 17/04/2017, 02:54:56 PM
     Author     : wilmer.mogollon
 */
-
-.modal-bodyc {
+#fondo {
     position: relative;
     padding: 15px;
-    background-image: url('images/fmodaladr.jpg') !important;
-    background-size: auto;
+    background-size: 100%;
     background-repeat: repeat-y;
-    
-    
 }
+
+.modal-bodyc {
+
+    position: relative;
+    padding: 15px;
+    background-image: url('images/fmodal.JPEG') !important;
+    background-size: 100%;
+    background-repeat: repeat-y;
+
+
+}
+
+
 
