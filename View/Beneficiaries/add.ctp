@@ -57,7 +57,7 @@
     'OTRO' => 'OTRO',
     ))); ?>
     <?php //echo $this->Form->input('Beneficiary.grupo', array('label' => 'Grupo beneficiario', 'class' => 'form-control', 'empty' => '', 'id' => 'grupo', 'options' => array('Indigena' => 'Indigena', 'Rom' => 'Rom', 'Negritudes' => 'Negritudes', 'Mujer cabeza de familia' => 'Mujer cabeza de familia', 'Raizal' => 'Raizal'))); ?>
-    <?php echo $this->Form->input('Beneficiary.nivel_escolaridad', array('label' => 'Nivel escolaridad', 'class' => 'form-control', 'empty' => '', 'options' => array(
+    <?php echo $this->Form->input('Beneficiary.nivel_escolaridad', array('label' => '', 'placeholder' => 'Nivel escolaridad', 'class' => 'form-control', 'empty' => '', 'options' => array(
     'NINGUNO' => 'NINGUNO', 
     'PRIMARIA' => 'PRIMARIA',
     'SECUNDARIA' => 'SECUNDARIA',
@@ -65,8 +65,8 @@
 
     ))); ?>
     <?php echo $this->Form->input('Beneficiary.fecha_nacimiento', array('label' => 'Fecha nacimiento', 'class' => 'form-control', 'required' => '', 'id' => 'datepicker', 'type' => 'text')); ?>
-    <?php echo $this->Form->input('Beneficiary.telefono', array('label' => 'Teléfono', 'class' => 'form-control')); ?>
-    <?php echo $this->Form->input('Beneficiary.direccion', array('label' => 'Dirección de notificación', 'class' => 'form-control')); ?>
+    <?php echo $this->Form->input('Beneficiary.telefono', array('label' => '', 'placeholder' => 'Teléfono', 'class' => 'form-control')); ?>
+    <?php echo $this->Form->input('Beneficiary.direccion', array('label' => '', 'placeholder' => 'Dirección de notificación', 'class' => 'form-control')); ?>
 
     <?php
     //creo el array de options para el select incluyendo los aspirantes principales
@@ -74,14 +74,11 @@
     foreach ($properties as $property) {
         $optionsProperties[$property['Property']['id']] = $property['Property']['nombre'] . " " . $property['Property']['oficina_matricula'] . "-" . $property['Property']['numero_matricula'];
     }
-    if($beneficiary_id == 0) echo $this->Form->input('Beneficiary.property_id', array('label' => 'Predio al que pertenece', 'empty' => 'Seleccione un predio', 'options' => $optionsProperties, 'class' => 'form-control'));
+    if($beneficiary_id == 0) echo $this->Form->input('Beneficiary.property_id', array('label' => '', 'placeholder' => 'Predio al que pertenece', 'empty' => 'Seleccione un predio', 'options' => $optionsProperties, 'class' => 'form-control'));
     ?>  
-    <div id="campesino">
-        <?php echo $this->Form->input('Beneficiary.sisben_area', array('label' => 'Área SISBEN', 'class' => 'form-control', 'options' => array('2' => '2', '3' => '3'), 'empty' => '0')); ?>
-        <?php echo $this->Form->input('Beneficiary.sisben_puntaje', array('label' => 'Puntaje SISBEN', 'class' => 'form-control')); //maximo 50?> 
-    </div>
+    
     <div id="victima">
-        <?php echo $this->Form->input('Beneficiary.rup', array('label' => 'Esta inscrito en el RUV', 'options' => array('Si' => 'Si', 'No' => 'No'), 'empty' => '', 'class' => 'form-control', 'required' => '')); ?>
+        <?php echo $this->Form->input('Beneficiary.rup', array('label' => '', 'placeholder' => 'Esta inscrito en el RUV', 'options' => array('Si' => 'Si', 'No' => 'No'), 'empty' => '', 'class' => 'form-control', 'required' => '')); ?>
     </div>
 
     <?php
@@ -92,17 +89,20 @@
             )
     );
     ?>
-    <?php if($beneficiary_id == 0) echo $this->Form->input('Beneficiary.departament_id', array('label' => ' Departamento', 'required' => '', 'class' => 'form-control', 'empty' => 'Seleccione departamento', 'options' => $departaments)); ?>
+    <?php if($beneficiary_id == 0) echo $this->Form->input('Beneficiary.departament_id', array('label' => '', 'required' => '', 'class' => 'form-control', 'empty' => 'Seleccione departamento', 'options' => $departaments)); ?>
     <div id="ciudades">
         <?php
         if($beneficiary_id == 0) echo $this->Form->input('Beneficiary.city_id', array(
-            'label' => __(' Municipio', true),
+            'label' => __('', true),
             'empty' => __('Seleccione ciudad', true),
             'class' => 'form-control',
             'required' => ''
                 )
         );
         ?>
+    </div>
+    <div id="victima">
+        <?php echo $this->Form->input('Beneficiary.numero_identificacion', array('label' => '', 'placeholder'=>'Número identificación victima', 'class' => 'form-control', 'required' => '', 'type' => 'number')); ?>
     </div>
     <table border="0">
         <tbody>
@@ -121,10 +121,6 @@
             <tr>
                 <td>Adjuntar certificado procuraduría</td>
                 <td><?php echo $this->Form->file('Beneficiary.procuraduria', array('label' => 'Adjuntar procuraduría', 'class' => 'form-control')); ?></td>
-            </tr>
-            <tr id="camp_docs">
-                <td>Adjuntar certificado SISBEN</td>
-                <td><?php echo $this->Form->file('Beneficiary.sisben', array('label' => 'Adjuntar sisben', 'class' => 'form-control')); ?></td>
             </tr>
             <tr>
                 <td>Adjuntar F1-GI-PPDRET / F26-GI-PPDRET</td>

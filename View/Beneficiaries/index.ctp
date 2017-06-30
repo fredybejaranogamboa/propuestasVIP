@@ -92,15 +92,6 @@
                                     ?>
                                     <br>
                                     <?php
-                                    if (file_exists("../webroot/files/Beneficiarios/sisben-" . $ben['Beneficiary']['id'] . ".pdf")) {
-                                        echo $this->Html->link(' SISBEN', "../files/Beneficiarios/sisben-" . $ben['Beneficiary']['id'] . ".pdf", array('target' => 'blank', 'indicator' => 'loading', 'class' => 'btn btn-info fa fa-file-pdf-o', 'download' => "SISBEN-" . $aleatorio . ".pdf"));
-                                        if ($admin) {
-                                            echo $this->Ajax->link(" Eliminar", array('controller' => 'Beneficiaries', "action" => "delete_file", 5, $ben['Beneficiary']['id']), array('update' => 'content', 'indicator' => 'loading', 'class' => 'btn btn-danger fa fa-trash'), '¿Seguro de borrar el archivo?');
-                                        }
-                                    }
-                                    ?>
-                                    <br>
-                                    <?php
                                     if (file_exists("../webroot/files/Beneficiarios/f26-" . $ben['Beneficiary']['id'] . ".pdf")) {
                                         echo $this->Html->link(' F26 / F1', "../files/Beneficiarios/f26-" . $ben['Beneficiary']['id'] . ".pdf", array('target' => 'blank', 'indicator' => 'loading', 'class' => 'btn btn-info fa fa-file-pdf-o', 'download' => "F26_F1-" . $aleatorio . ".pdf"));
                                         if ($admin) {

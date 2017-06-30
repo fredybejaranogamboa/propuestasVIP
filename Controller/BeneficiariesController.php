@@ -121,13 +121,6 @@ class BeneficiariesController extends AppController {
                     }
                 }
 
-                if (!empty($this->data['Beneficiary']['sisben']['tmp_name'])) {
-                    $nombrearchivo = "sisben-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Beneficiary']['sisben']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando sisben', 'flash_error');
-                    }
-                }
-
                 if (!empty($this->data['Beneficiary']['f26']['tmp_name'])) {
                     $nombrearchivo = "f26-" . $last_id . ".pdf";
                     if (!move_uploaded_file($this->data['Beneficiary']['f26']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
@@ -135,12 +128,7 @@ class BeneficiariesController extends AppController {
                     }
                 }
 
-                if (!empty($this->data['Beneficiary']['sisben']['tmp_name'])) {
-                    $nombrearchivo = "sisben-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Beneficiary']['sisben']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando sisben', 'flash_error');
-                    }
-                }
+                
                 $this->Session->setFlash('Beneficiario guardado correctamente', 'flash');
                 if ($beneficiary_id == 0) {
                     $this->redirect(array('controller' => 'Beneficiaries', 'action' => 'index', $proyect_id));

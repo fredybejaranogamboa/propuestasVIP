@@ -20,7 +20,7 @@ class DATABASE_CONFIG {
         'host' => 'localhost',
         'login' => 'root',
         'password' => '',
-        'database' => 'pdret',
+        'database' => 'propuestasVIP',
         'prefix' => '',
         'encoding' => 'utf8',
         

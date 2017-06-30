@@ -119,10 +119,6 @@
                 <td>Adjuntar certificado procuraduría</td>
                 <td><?php echo $this->Form->file('Beneficiary.procuraduria', array('label' => 'Adjuntar procuraduría', 'class' => 'form-control')); ?></td>
             </tr>
-            <tr id="camp_docs">
-                <td>Adjuntar certificado SISBEN</td>
-                <td><?php echo $this->Form->file('Beneficiary.sisben', array('label' => 'Adjuntar sisben', 'class' => 'form-control')); ?></td>
-            </tr>
             <tr>
                 <td>Adjuntar F1-GI-PPDRET / F26-GI-PPDRET</td>
                 <td><?php echo $this->Form->file('Beneficiary.f26', array('label' => 'Adjuntar f26', 'class' => 'form-control')); ?></td>
