@@ -51,31 +51,10 @@ Class AsociationsController extends AppController {
                     }
                 }
 
-                if (!empty($this->data['Asociation']['experiencia']['tmp_name'])) {
-                    $nombrearchivo = "experiencia-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Asociation']['experiencia']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando experiencia.', 'flash');
-                    }
-                }
-
-                if (!empty($this->data['Asociation']['credencial']['tmp_name'])) {
-                    $nombrearchivo = "credencial-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Asociation']['credencial']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando credencial.', 'flash');
-                    }
-                }
-
-                if (!empty($this->data['Asociation']['facultad_representante']['tmp_name'])) {
-                    $nombrearchivo = "facultad_representante-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Asociation']['facultad_representante']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando facultad_representante.', 'flash');
-                    }
-                }
-
-                if (!empty($this->data['Asociation']['cdp']['tmp_name'])) {
-                    $nombrearchivo = "cdp-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Asociation']['cdp']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando Certificado disponibilidad presupuestal.', 'flash');
+                if (!empty($this->data['Asociation']['certificacion_contrapartida']['tmp_name'])) {
+                    $nombrearchivo = "certificacion_contrapartida-" . $last_id . ".pdf";
+                    if (!move_uploaded_file($this->data['Asociation']['certificacion_contrapartida']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
+                        $this->Session->setFlash('Error adjuntando certificación contrapartida.', 'flash');
                     }
                 }
 
@@ -85,11 +64,11 @@ Class AsociationsController extends AppController {
                         $this->Session->setFlash('Error adjuntando posesion.', 'flash');
                     }
                 }
-
-                if (!empty($this->data['Asociation']['f28']['tmp_name'])) {
-                    $nombrearchivo = "f28-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Asociation']['f28']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando f28.', 'flash');
+                
+                if (!empty($this->data['Asociation']['resolucion']['tmp_name'])) {
+                    $nombrearchivo = "resolucion-" . $last_id . ".pdf";
+                    if (!move_uploaded_file($this->data['Asociation']['resolucion']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
+                        $this->Session->setFlash('Error adjuntando resolucion.', 'flash');
                     }
                 }
 
@@ -178,31 +157,10 @@ Class AsociationsController extends AppController {
                     }
                 }
 
-                if (!empty($this->data['Asociation']['experiencia']['tmp_name'])) {
-                    $nombrearchivo = "experiencia-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Asociation']['experiencia']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando experiencia.', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Asociation']['credencial']['tmp_name'])) {
-                    $nombrearchivo = "credencial-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Asociation']['credencial']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando credencial.', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Asociation']['facultad_representante']['tmp_name'])) {
-                    $nombrearchivo = "facultad_representante-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Asociation']['facultad_representante']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando facultad_representante.', 'flash_error');
-                    }
-                }
-
-                if (!empty($this->data['Asociation']['cdp']['tmp_name'])) {
-                    $nombrearchivo = "cdp-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Asociation']['cdp']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando Certificado disponibilidad presupuestal.', 'flash_error');
+                if (!empty($this->data['Asociation']['certificacion_contrapartida']['tmp_name'])) {
+                    $nombrearchivo = "certificacion_contrapartida-" . $last_id . ".pdf";
+                    if (!move_uploaded_file($this->data['Asociation']['certificacion_contrapartida']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
+                        $this->Session->setFlash('Error adjuntando certificación contrapartida.', 'flash_error');
                     }
                 }
 
@@ -212,11 +170,11 @@ Class AsociationsController extends AppController {
                         $this->Session->setFlash('Error adjuntando posesion.', 'flash_error');
                     }
                 }
-
-                if (!empty($this->data['Asociation']['f28']['tmp_name'])) {
-                    $nombrearchivo = "f28-" . $last_id . ".pdf";
-                    if (!move_uploaded_file($this->data['Asociation']['f28']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
-                        $this->Session->setFlash('Error adjuntando f28.', 'flash');
+                
+                if (!empty($this->data['Asociation']['resolucion']['tmp_name'])) {
+                    $nombrearchivo = "resolucion-" . $last_id . ".pdf";
+                    if (!move_uploaded_file($this->data['Asociation']['resolucion']['tmp_name'], $rutaArchivo . DS . $nombrearchivo)) {
+                        $this->Session->setFlash('Error adjuntando resolución.', 'flash');
                     }
                 }
 

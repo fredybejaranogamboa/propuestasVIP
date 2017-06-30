@@ -80,36 +80,9 @@
                     ?></td>
             </tr>
             <tr>
-                <td>Certificado vínculo de los beneficiarios con la persona jurídica</td>
+                <td>VIP-F1 certificación y autorización potenciales beneficiarios</td>
                 <td><?php
                     echo $this->Form->file('Asociation.certificado', array('label' => 'Certificado asociación', 'class' => 'form-control',
-                        'accept' => 'application/pdf',
-                        'aria-required' => 'true',
-                        'extension' => 'pdf'));
-                    ?></td>
-            </tr>
-            <tr>
-                <td>Soporte experiencia</td>
-                <td><?php
-                    echo $this->Form->file('Asociation.experiencia', array('label' => 'Soporte experiencia', 'class' => 'form-control',
-                        'accept' => 'application/pdf',
-                        'aria-required' => 'true',
-                        'extension' => 'pdf'));
-                    ?></td>
-            </tr>
-            <tr>
-                <td>Credencial</td>
-                <td><?php
-                    echo $this->Form->file('Asociation.credencial', array('label' => 'Credencial', 'class' => 'form-control',
-                        'accept' => 'application/pdf',
-                        'aria-required' => 'true',
-                        'extension' => 'pdf'));
-                    ?></td>
-            </tr>
-            <tr>
-                <td>Acto administrativo que faculta al representante legal a suscribir convenios</td>
-                <td><?php
-                    echo $this->Form->file('Asociation.facultad_representante', array('label' => 'Acto administrativo', 'class' => 'form-control',
                         'accept' => 'application/pdf',
                         'aria-required' => 'true',
                         'extension' => 'pdf'));
@@ -125,18 +98,18 @@
                     ?></td>
             </tr>
             <tr>
-                <td>Certificado disponibilidad presupuestal</td>
+                <td>Certificación contrapartida</td>
                 <td><?php
-                    echo $this->Form->file('Asociation.cdp', array('label' => 'Certificado disponibilidad presupuestal', 'class' => 'form-control',
+                    echo $this->Form->file('Asociation.certificacion_contrapartida', array('label' => 'Certificación contrapartida', 'class' => 'form-control',
                         'accept' => 'application/pdf',
                         'aria-required' => 'true',
                         'extension' => 'pdf'));
                     ?></td>
             </tr>
             <tr>
-                <td>Caracterización social población beneficiaria F28-GI-PPDRET</td>
+                <td>Resolución adjudicación</td>
                 <td><?php
-                    echo $this->Form->file('Asociation.f28', array('label' => 'Caracterización social población beneficiaria', 'class' => 'form-control',
+                    echo $this->Form->file('Asociation.f28', array('label' => 'Resolución adjudicación', 'class' => 'form-control',
                         'accept' => 'application/pdf',
                         'aria-required' => 'true',
                         'extension' => 'pdf'));

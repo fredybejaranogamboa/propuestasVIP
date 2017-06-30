@@ -58,7 +58,7 @@
                             <td><?php if ($permitir) echo $this->Ajax->link(' Eliminar', array('controller' => 'Asociations', 'action' => 'delete', $Asociation["Asociation"]["id"]), array('update' => 'content', 'indicator' => 'loading', 'class' => 'btn btn-danger fa fa-trash'), '¿Desea elimiar la asociación?'); ?></td>
                             <td><?php
                                     if (file_exists("../webroot/files/Asociaciones/existencia-" . $Asociation['Asociation']['id'] . ".pdf"))
-                                        echo $this->Html->link('  Certificado vínculo', "../files/Asociaciones/existencia-" . $Asociation['Asociation']['id'] . ".pdf", array('target' => 'blank', 'indicator' => 'loading', 'class' => 'btn btn-info fa fa-file-pdf-o', 'download' => "Certificado_vinculo-" . $aleatorio . ".pdf"));
+                                        echo $this->Html->link('  VIP-F1 certificación y autorización potenciales beneficiarios', "../files/Asociaciones/existencia-" . $Asociation['Asociation']['id'] . ".pdf", array('target' => 'blank', 'indicator' => 'loading', 'class' => 'btn btn-info fa fa-file-pdf-o', 'download' => "Certificado_vinculo-" . $aleatorio . ".pdf"));
                                     ?>
                                 <br><br>
                                     <?php
@@ -76,20 +76,7 @@
                                         echo $this->Html->link('  Certificación', "../files/Asociaciones/certificacion-" . $Asociation['Asociation']['id'] . ".pdf", array('target' => 'blank', 'indicator' => 'loading', 'class' => 'btn btn-info fa fa-file-pdf-o', 'download' => "Certificacion-" . $aleatorio . ".pdf"));
                                     ?></td>
 
-                            <td><?php
-                                    if (file_exists("../webroot/files/Asociaciones/experiencia-" . $Asociation['Asociation']['id'] . ".pdf"))
-                                        echo $this->Html->link('  Experiencia', "../files/Asociaciones/experiencia-" . $Asociation['Asociation']['id'] . ".pdf", array('target' => 'blank', 'indicator' => 'loading', 'class' => 'btn btn-info fa fa-file-pdf-o', 'download' => "Experiencia-" . $aleatorio . ".pdf"));
-                                    ?>
-                                <br><br>
-                                    <?php
-                                    if (file_exists("../webroot/files/Asociaciones/credencial-" . $Asociation['Asociation']['id'] . ".pdf"))
-                                        echo $this->Html->link('  Credencial', "../files/Asociaciones/credencial-" . $Asociation['Asociation']['id'] . ".pdf", array('target' => 'blank', 'indicator' => 'loading', 'class' => 'btn btn-info fa fa-file-pdf-o', 'download' => "Credencial-" . $aleatorio . ".pdf"));
-                                    ?>
-                                <br><br>
-                                    <?php
-                                    if (file_exists("../webroot/files/Asociaciones/facultad_representante-" . $Asociation['Asociation']['id'] . ".pdf"))
-                                        echo $this->Html->link('  Facultad_representante', "../files/Asociaciones/facultad_representante-" . $Asociation['Asociation']['id'] . ".pdf", array('target' => 'blank', 'indicator' => 'loading', 'class' => 'btn btn-info fa fa-file-pdf-o', 'download' => "Facultad_representante-" . $aleatorio . ".pdf"));
-                                    ?>
+                            <td>
                                 <br><br>
                                     <?php
                                     if (file_exists("../webroot/files/Asociaciones/posesion-" . $Asociation['Asociation']['id'] . ".pdf"))
@@ -97,13 +84,13 @@
                                     ?>
                                 <br><br>
                                     <?php
-                                    if (file_exists("../webroot/files/Asociaciones/cdp-" . $Asociation['Asociation']['id'] . ".pdf"))
-                                        echo $this->Html->link('  CDP', "../files/Asociaciones/cdp-" . $Asociation['Asociation']['id'] . ".pdf", array('target' => 'blank', 'indicator' => 'loading', 'class' => 'btn btn-info fa fa-file-pdf-o', 'download' => "CDP-" . $aleatorio . ".pdf"));
+                                    if (file_exists("../webroot/files/Asociaciones/certificacion_contrapartida-" . $Asociation['Asociation']['id'] . ".pdf"))
+                                        echo $this->Html->link('  Certificación contrapartida', "../files/Asociaciones/certificacion_contrapartida-" . $Asociation['Asociation']['id'] . ".pdf", array('target' => 'blank', 'indicator' => 'loading', 'class' => 'btn btn-info fa fa-file-pdf-o', 'download' => "Certificacion_contrapartida-" . $aleatorio . ".pdf"));
                                     ?>
                                 <br><br>
                                     <?php
-                                    if (file_exists("../webroot/files/Asociaciones/f28-" . $Asociation['Asociation']['id'] . ".pdf"))
-                                        echo $this->Html->link('  F28', "../files/Asociaciones/f28-" . $Asociation['Asociation']['id'] . ".pdf", array('target' => 'blank', 'indicator' => 'loading', 'class' => 'btn btn-info fa fa-file-pdf-o', 'download' => "F28-" . $aleatorio . ".pdf"));
+                                    if (file_exists("../webroot/files/Asociaciones/resolucion-" . $Asociation['Asociation']['id'] . ".pdf"))
+                                        echo $this->Html->link('  Resolución adjudicación', "../files/Asociaciones/resolucion-" . $Asociation['Asociation']['id'] . ".pdf", array('target' => 'blank', 'indicator' => 'loading', 'class' => 'btn btn-info fa fa-file-pdf-o', 'download' => "Resolucion-" . $aleatorio . ".pdf"));
                                     ?>
                             </td>
                         </tr>

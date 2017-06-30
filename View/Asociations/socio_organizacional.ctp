@@ -62,14 +62,10 @@
         <?php echo $this->Form->input('Asociation.adulto_mayor', array('label' => 'Total adulto mayor', 'class' => 'form-control')); ?>
         <br>
         <?php echo $this->Form->input('Asociation.afros', array('label' => 'Afrocolombianos', 'class' => 'form-control')); ?>
+        <?php echo $this->Form->input('Asociation.raizal', array('label' => 'Raizales', 'class' => 'form-control')); ?>
         <?php echo $this->Form->input('Asociation.indigenas', array('label' => 'Indígenas', 'class' => 'form-control')); ?>
         <?php echo $this->Form->input('Asociation.campesinos', array('label' => 'Campesinos', 'class' => 'form-control')); ?>
-        <?php echo $this->Form->input('Asociation.retornados', array('label' => 'Retornados', 'class' => 'form-control')); ?>
         <?php echo $this->Form->input('Asociation.victimas', array('label' => 'Victimas', 'class' => 'form-control')); ?>
-        <?php echo $this->Form->input('Asociation.sustitucion', array('label' => 'Victimas', 'class' => 'form-control')); ?>
-        <?php echo $this->Form->input('Asociation.ilicitos', array('label' => 'sustitución ilícitos', 'class' => 'form-control')); ?>
-        <?php echo $this->Form->input('Asociation.reinsertados', array('label' => 'Reinsertados', 'class' => 'form-control')); ?>
-        <?php echo $this->Form->input('Asociation.medianos', array('label' => 'Medianos y/o grandes empresarios', 'class' => 'form-control')); ?>
     </div>
     <br><br>
     <h3>No. Personas Impactadas: (Directos y Indirectos)</h3>
@@ -77,7 +73,7 @@
         <?php echo $this->Form->input('Asociation.directos', array('label' => 'Directos', 'class' => 'form-control')); ?>
         <?php echo $this->Form->input('Asociation.indirectos', array('label' => 'Indirectos', 'class' => 'form-control')); ?>
     </div>
-    <?php echo $this->Form->input('Asociation.tiempo_experiencia', array('label'=>'Tiempo experiencia', 'class'=>'form-control')); ?>        
+    <?php echo $this->Form->input('Asociation.tiempo_experiencia', array('label'=>'Tiempo experiencia en meses', 'class'=>'form-control')); ?>        
     <?php
         echo $this->Form->input('Asociation.relacion_predio', array('label' => 'Relación jurídica con el predio: (propietario, poseedor, tenedor y ocupante)', 'required' => '', 'class' => 'form-control', 'empty' => '', 'options' => array(
                 'Propietario' =>'Propietario',                

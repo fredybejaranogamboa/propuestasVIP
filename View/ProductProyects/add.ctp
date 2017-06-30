@@ -7,6 +7,8 @@
             <div id="loading" style="display: none;">
         <?php echo $this->Html->image('loading.gif', array('border' => "0", 'align' => 'center')); ?>
             </div>
+            <p>El área del predio debe ser escrita de la siguiente forma, el total de hectáreas enteras en el campo "Área hectáreas" y los metros cuadrados que completan el área total en "Área metros cuadrados", por ejemplo si el
+            área total es de 2 Ha 2384 mts2, se escribe en el campo hectáreas 2 y en metros cuadrados 2384</p>
     <?php
     echo $this->Form->create('ProductProyect', array('role'=>"form"));
     echo $this->Form->hidden("ProductProyect.proyect_id", array('value'=> $proyect_id));
