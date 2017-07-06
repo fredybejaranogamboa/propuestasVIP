@@ -175,7 +175,7 @@ define('LOG_ERROR', LOG_ERR);
 Configure::write('Session', array(
     'defaults' => 'php',
     'timeout' => 4320,
-    'cookie' => 'pdret1'
+    'cookie' => 'propuesta'
 ));
 
 /**
